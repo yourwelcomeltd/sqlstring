@@ -1,5 +1,5 @@
 var assert    = require('assert');
-var SqlString = require('../common').SqlString;
+var SqlString = require('../../');
 var test      = require('utest');
 
 test('SqlString.escapeId', {
@@ -18,9 +18,11 @@ test('SqlString.escapeId', {
   'value containing separator is quoted': function() {
     assert.equal('`id1`.`id2`', SqlString.escapeId('id1.id2'));
   },
+
   'value containing separator and escapes is quoted': function() {
     assert.equal('`id``1`.`i``d2`', SqlString.escapeId('id`1.i`d2'));
   },
+
   'value containing separator is fully escaped when forbidQualified': function() {
     assert.equal('`id1.id2`', SqlString.escapeId('id1.id2', true));
   },
@@ -171,6 +173,13 @@ test('SqlString.escape', {
     var string   = SqlString.escape(date, false, 'foo');
 
     assert.strictEqual(string, expected);
+  },
+
+  'invalid dates are converted to null': function() {
+    var date   = new Date(NaN);
+    var string = SqlString.escape(date);
+
+    assert.strictEqual(string, 'NULL');
   },
 
   'buffers are converted to hex': function() {

@@ -5,6 +5,8 @@
   "rules": {
     "comma-dangle": [2, "never"],
     "consistent-return": 2,
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "key-spacing": [2, { "align": { "beforeColon": true, "afterColon": true, "on": "colon" } }],
     "no-cond-assign": 2,
     "no-constant-condition": 2,
     "no-control-regex": 2,
@@ -28,7 +30,9 @@
     "no-trailing-spaces": 2,
     "no-unexpected-multiline": 2,
     "no-unreachable": 2,
+    "no-unused-vars": 2,
     "semi": [2, "always"],
+    "space-infix-ops": 2,
     "use-isnan": 2,
     "valid-jsdoc": 2,
     "valid-typeof": 2
